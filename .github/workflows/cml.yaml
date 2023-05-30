@@ -19,6 +19,5 @@ jobs:
 
           # Create CML report
           cat metrics.txt >> report.md
-          cml comment create --pr --publish metrics.txt
-          cml publish confusion_matrix.png --md --title 'confusion-matrix' >> report.md
+          cml publish confusion_matrix.png --md --title 'Confusion Matrix' >> report.md
           cml send-comment report.md
