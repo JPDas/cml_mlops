@@ -19,4 +19,4 @@ jobs:
           # Create CML report
           echo "MODEL METRICS"
           cat metrics.txt
-          cml comment create --pr --publish metrics.txt
+          cml comment create --target=pr --publish metrics.txt
