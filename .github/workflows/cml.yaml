@@ -3,15 +3,15 @@ on: [push]
 jobs:
   train-model:
     runs-on: ubuntu-latest
+    container: docker://ghcr.io/iterative/cml:0-dvc2-base1
     steps:
-      - uses: iterative/setup-cml@v1
       - uses: actions/checkout@v3
       - name: Train model
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pip3 install --upgrade pip
-          pip3 install -r requirements.txt
+          pip install --upgrade pip
+          pip install -r requirements.txt
           python train.py
 
           # Create CML report
