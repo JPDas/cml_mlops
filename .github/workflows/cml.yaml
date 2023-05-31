@@ -1,10 +1,10 @@
 name: train-my-model
 on: [push]
 jobs:
-  run:
+  train-model:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Train model
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -15,6 +15,5 @@ jobs:
 
           # Create CML report
           echo "MODEL METRICS"
-          cat metrics.txt >> report.md
-          cml-publish plot.png --md --title 'confusion-matrix' >> report.md
-          cml-send-comment report.md
+          cat metrics.txt
+          cml comment create --pr --publish metrics.txt
